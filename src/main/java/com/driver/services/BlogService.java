@@ -21,15 +21,15 @@ public class BlogService {
     @Autowired
     UserRepository userRepository1;
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content) {
+    public Blog createAndReturnBlog(Integer userId, String title, String content) throws Exception {
         //create a blog at the current time
 
         User user = userRepository1.findById(userId).get();
+        if (user == null) throw new Exception();
 
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setContent(content);
-        if(user == null) return blog;
         blog.setUser(user);
 
         List<Blog> userBlogs = user.getBlogList();
