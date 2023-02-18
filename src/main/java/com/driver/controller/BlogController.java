@@ -21,7 +21,7 @@ public class BlogController {
                                      @RequestParam String title,
                                      @RequestParam String content) {
         blogService.createAndReturnBlog(userId, title, content);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{blogId}")
