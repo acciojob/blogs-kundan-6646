@@ -21,9 +21,10 @@ public class BlogService {
     @Autowired
     UserRepository userRepository1;
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content) {
+    public Blog createAndReturnBlog(Integer userId, String title, String content) throws NullPointerException{
         //create a blog at the current time
         User user = (User)this.userRepository1.findById(userId).get();
+        if (user == null) throw new NullPointerException();
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setContent(content);
